@@ -9,6 +9,12 @@
 <div th:each="user : ${users}">
     <a th:href="@{/users/{id}(id=${user.getId()})}"
        th:text="${user.getName() + ', ' + user.getAge()}">user</a>
+    <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+        <input type="submit" value="Update!"/>
+    </form>
+    <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+        <input type="submit" value="Delete!"/>
+    </form>
 </div>
 
 <br/>
