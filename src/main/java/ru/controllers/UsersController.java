@@ -8,30 +8,32 @@ import org.springframework.web.bind.annotation.*;
 
 import ru.dao.UserDao;
 import ru.model.User;
+import ru.service.UserService;
 
 
 @Controller
 @RequestMapping("/users")
 public class UsersController {
 
-    private final UserDao userDAO;
+    private final UserService userService;
 
     @Autowired
-    public UsersController(UserDao userDAO) {
-        this.userDAO = userDAO;
+    public UsersController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("users", userDAO.index());
-        return "users/index";
+    public String index(@RequestParam(value = "id", required = false) String idStr, Model model) {
+        if (idStr == null) {
+            model.addAttribute("users", userService.index());
+            return "users/index";
+        } else {
+            int id = Integer.parseInt(idStr);
+            model.addAttribute("user", userService.show(id));
+            return "users/show";
+        }
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userDAO.show(id));
-        return "users/show";
-    }
 
     @GetMapping("/new")
     public String newPerson(Model model){
@@ -41,24 +43,26 @@ public class UsersController {
 
     @PostMapping
     public String creat(@ModelAttribute("user") User user){
-        userDAO.save(user);
+        userService.save(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}/edit")
+    /*@GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("user", userDAO.show(id));
+        model.addAttribute("user", userService.show(id));
         return "users/edit";
-    }
+    }*/
 
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id){
-        userDAO.update(id, user);
+    @PatchMapping()
+    public String update(@ModelAttribute("user") User user, @RequestParam(value = "id", required = false) String idStr){
+        int id = Integer.parseInt(idStr);
+        userService.update(id, user);
         return "redirect:/users";
     }
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
-        userDAO.delete(id);
+    @DeleteMapping()
+    public String delete(@RequestParam(value = "id", required = false) String idStr){
+        int id = Integer.parseInt(idStr);
+        userService.delete(id);
         return "redirect:/users";
     }
 }
