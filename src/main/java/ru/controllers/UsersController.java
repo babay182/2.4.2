@@ -47,21 +47,21 @@ public class UsersController {
         return "redirect:/users";
     }
 
-    /*@GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id){
+    @GetMapping("/edit")
+    public String edit(Model model, @RequestParam(value = "id", required = false) String ids){
+        if(ids == null) System.out.println("Cavabanga");
+        int id = Integer.parseInt(ids);
         model.addAttribute("user", userService.show(id));
         return "users/edit";
-    }*/
+    }
 
     @PatchMapping()
-    public String update(@ModelAttribute("user") User user, @RequestParam(value = "id", required = false) String idStr){
-        int id = Integer.parseInt(idStr);
+    public String update(@ModelAttribute("user") User user, @RequestParam(value = "id", required = false) Integer id){
         userService.update(id, user);
         return "redirect:/users";
     }
     @DeleteMapping()
-    public String delete(@RequestParam(value = "id", required = false) String idStr){
-        int id = Integer.parseInt(idStr);
+    public String delete(@RequestParam(value = "id", required = false) Integer id){
         userService.delete(id);
         return "redirect:/users";
     }
