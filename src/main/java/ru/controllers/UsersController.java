@@ -55,12 +55,12 @@ public class UsersController {
         return "users/edit";
     }
 
-    @PatchMapping()
+    @PostMapping("/update")
     public String update(@ModelAttribute("user") User user, @RequestParam(value = "id", required = false) Integer id){
         userService.update(id, user);
         return "redirect:/users";
     }
-    @DeleteMapping()
+    @PostMapping("/delete")
     public String delete(@RequestParam(value = "id", required = false) Integer id){
         userService.delete(id);
         return "redirect:/users";

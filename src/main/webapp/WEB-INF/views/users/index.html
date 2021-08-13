@@ -14,7 +14,7 @@
     <!--<form th:method="GET" th:action="@{/users/edit(id=${user.getId()})}">
         <input type="submit" value="Update!"/>
     </form>-->
-    <form th:method="DELETE" th:action="@{/users(id=${user.getId()})}">
+    <form th:method="POST" th:action="@{/users/delete(id=${user.getId()})}">
         <input type="submit" value="Delete!"/>
     </form>
 </div>
