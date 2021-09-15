@@ -5,12 +5,22 @@
     <title>User</title>
 </head>
 <body>
-<p th:text="${user.getName()}">VALUE</p>
-<p th:text="${user.getEmail()}">VALUE</p>
-<p th:text="${user.getAge()}">VALUE</p>
-<p th:text="${user.getId()}">VALUE</p>
-<p th:text="${user.getRolesName()}">VALUE</p>
-<a href="/logout"><button><strong>Logout</strong></button></a>
+<table border="10" cellpadding="15" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Roles</th>
+
+    </tr>
+    <tr align="center">
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getRolesName()}"></td>
+        </td>
+    </tr>
+</table>
 
 
 </body>

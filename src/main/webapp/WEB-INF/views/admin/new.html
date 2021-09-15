@@ -22,7 +22,7 @@
     <div>
         <p>Role</p>
 
-        <select name="rolesSelected" multiple required size="3">
+        <select name="rolesSelected" multiple required size="2">
             <option disabled selected>select role</option>
             <div th:each="role : ${roles}">
                 <option th:text="${role.getName()}" th:value="${role.getId()}" name="roles"/>

@@ -88,7 +88,7 @@ public class User {
     }
 
     public String getRolesName() {
-        return roles.stream().map(el->el.getName()).collect(Collectors.joining (","));
+        return roles.stream().map(el->el.getName()).collect(Collectors.joining (", "));
     }
 
     public Set<Role> getRoles() {

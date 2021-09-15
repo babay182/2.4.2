@@ -32,7 +32,7 @@ import java.util.Properties;
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
-    private final ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;//спринг контейнер для хранения бинов
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -56,8 +56,8 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix("/WEB-INF/views/");//будет добавленно в начала ретюрна из контроллера(имени view)
+        templateResolver.setSuffix(".html");//будет добавленно в конец ретюрна контроллера(имени view)
         return templateResolver;
     }
 
