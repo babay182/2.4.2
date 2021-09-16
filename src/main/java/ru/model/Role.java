@@ -17,22 +17,10 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id")
-            , inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
-
     public Role() { }
 
     public Role(String name) {
         this.name = name;
-    }
-
-    public void addUser(User user){
-        if(users == null){
-            users = new HashSet<>();
-        }
-        users.add(user);
     }
 
     public Long getId() {
