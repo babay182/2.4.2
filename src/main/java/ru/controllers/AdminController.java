@@ -16,7 +16,6 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
-@Transactional
 public class AdminController {
 
     private final UserService userService;
@@ -26,7 +25,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping
     public String index(@RequestParam(value = "id", required = false) String idStr, Model model) {
         if (idStr == null) {
             model.addAttribute("users", userService.index());
