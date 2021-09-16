@@ -22,7 +22,7 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping
     public String index(@RequestParam(value = "id", required = false) String idStr, Model model) {
         if (idStr == null) {
             model.addAttribute("users", userService.index());
